@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project intake / Megbízás-bekérő: Investment Teaser &amp; Memo (deal documents)</title>
+<style>
+:root{--paper:#F0F4F7;--surface:#FFFFFF;--ink:#12243E;--muted:#466A9D;--rule:#BACEDD;--primary:#12243E;--accent:#008080;--attn:#FF7055}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 Inter,'Segoe UI',Arial,sans-serif}
+main{max-width:760px;margin:0 auto;padding:24px 16px 64px}
+header.band{background:var(--primary);color:#fff;border-radius:12px;padding:20px 22px;margin-bottom:16px}header.band small{letter-spacing:.14em;text-transform:uppercase;font-size:11px;color:#BACEDD}
+header.band h1{margin:6px 0 0;font-size:24px}.privacy{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:12px 16px;color:var(--muted);font-size:13px}
+section{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:16px 18px;margin-top:14px}section h2{margin:0 0 4px;font-size:17px}.note{color:var(--muted);font-size:13px;margin:0 0 8px}
+label.q{display:block;margin:14px 0 4px;font-weight:600}label.q .req{color:var(--attn)}
+input[type=text],input[type=date],input[type=number],select,textarea{width:100%;padding:9px 10px;border:1px solid var(--rule);border-radius:8px;background:#fff;color:var(--ink);font:inherit}
+textarea{min-height:72px}.opts label{display:block;font-weight:400;margin:4px 0}.err{color:#C9422B;font-size:13px;margin-top:3px;display:none}.bad .err{display:block}.bad input,.bad select,.bad textarea{border-color:#C9422B}
+button{background:var(--primary);color:#fff;border:0;border-radius:8px;padding:11px 18px;font:600 15px Inter,Arial,sans-serif;cursor:pointer;margin-top:18px}
+#done{display:none}ul.files{margin:6px 0 0 18px;padding:0}
+</style></head><body><main>
+<header class="band"><small>Investment Teaser &amp; Memo (deal documents)</small><h1>Project intake / Megbízás-bekérő</h1></header>
+<p class="privacy">Please share business information only. Do not send passwords, bank logins or personal identification numbers. We use your answers only for this engagement. Kérjük, csak üzleti információt adjon meg. Jelszót, banki belépési adatot vagy személyi azonosítót ne küldjön. A válaszokat kizárólag e megbízáshoz használjuk.</p>
+<form id="f" novalidate></form>
+<section id="done"><h2>Thank you / Köszönjük</h2><p id="doneMsg"></p></section>
+<script>
+const SPEC = {"product": "teaser_memo", "name": "Investment Teaser & Memo (deal documents)", "sections": [{"id": "engagement", "title": "Engagement / Megbízás", "note": "", "questions": [{"id": "client_name", "type": "text", "required": true, "label": "Client legal entity name / Ügyfél (cégnév)", "options": []}, {"id": "client_country", "type": "text", "required": true, "label": "Client country / Ország", "options": []}, {"id": "contact_person", "type": "text", "required": true, "label": "Contact person and role / Kapcsolattartó és beosztása", "options": []}, {"id": "tier", "type": "choice", "required": true, "label": "Package / Csomag", "options": ["teaser", "memo", "memo_model"]}, {"id": "deadline", "type": "date", "required": true, "label": "Deadline / Határidő", "options": []}, {"id": "language", "type": "choice", "required": true, "label": "Report language / Riport nyelve", "options": ["en", "hu", "en+hu"]}]}, {"id": "legal", "title": "Purpose and use (legal classification) / Cél és felhasználás (jogi besorolás)", "note": "These answers decide whether the work can be accepted. We do not provide investment advice or investment research on financial instruments. Ezek a válaszok döntik el, hogy a munka elvállalható-e. Pénzügyi eszközre befektetési tanácsot vagy elemzést nem adunk.", "questions": [{"id": "client_type", "type": "choice", "required": true, "label": "Who is the client? / Ki az ügyfél?", "options": ["company", "private_individual", "licensed_investment_firm", "other"]}, {"id": "intended_use", "type": "choice", "required": true, "label": "What will the client use the deliverable for? / Mire fogja használni az ügyfél az anyagot?", "options": ["sale_or_purchase_of_private_company", "shareholder_buyout", "fundraising_private", "succession", "negotiation", "competitor_benchmark", "supplier_due_diligence", "ma_target_screening", "management_reporting", "budgeting_planning", "cost_planning", "market_entry", "deal_document_private_placement", "crowdfunding", "investment_decision_listed_securities", "trading_or_hedging", "public_offering", "newsletter_or_publication", "court_or_tax_certified_valuation", "other"]}, {"id": "intended_use_detail", "type": "text", "required": true, "label": "Describe the decision in one sentence / A döntés egy mondatban", "options": []}, {"id": "subject_is_listed", "type": "bool", "required": true, "label": "Is any analysed company a listed issuer (shares/bonds traded on an exchange)? / Van-e az elemzett cégek között tőzsdén jegyzett kibocsátó?", "options": []}, {"id": "distribution", "type": "choice", "required": true, "label": "Who will see the deliverable? / Kik látják az anyagot?", "options": ["internal_only", "named_recipients", "public"]}, {"id": "offers_securities_publicly", "type": "bool", "required": true, "label": "Will securities, bonds or fund units be offered to the public with it? / Nyilvánosan kínálnak vele értékpapírt, kötvényt vagy befektetési jegyet?", "options": []}]}, {"id": "decision", "title": "Goal and decision / Cél és döntés", "note": "", "questions": [{"id": "goal", "type": "text", "required": true, "label": "What should the deliverable achieve? / Mit kell elérnie az anyagnak?", "options": []}, {"id": "key_questions", "type": "list", "required": true, "label": "Top 3 questions it must answer / A 3 legfontosabb kérdés, amire választ kell adnia", "options": []}, {"id": "audience", "type": "text", "required": true, "label": "Who reads it (roles)? / Kik olvassák (szerepkörök)?", "options": []}]}, {"id": "branding", "title": "Branding / Arculat", "note": "", "questions": [{"id": "white_label", "type": "bool", "required": true, "label": "Client branding (logo, colours, font)? (+$100) / Ügyfél-arculat (logó, színek, betű)? (+$100)", "options": []}, {"id": "brand_assets", "type": "text", "required": false, "label": "Logo file, HEX colours, font name / Logófájl, HEX színek, betűtípus", "options": []}]}, {"id": "deal", "title": "Deal / Ügylet", "note": "", "questions": [{"id": "asset_type", "type": "choice", "required": true, "label": "What is being presented? / Mit mutatunk be?", "options": ["real_estate", "company_sale", "startup", "project"]}, {"id": "recipients", "type": "text", "required": true, "label": "Named recipients / investor types (no public offer) / Megnevezett címzettek / befektetői kör (nyilvános ajánlattétel nincs)", "options": []}, {"id": "anonymised", "type": "bool", "required": true, "label": "Anonymised teaser? / Anonimizált teaser?", "options": []}, {"id": "ask", "type": "text", "required": true, "label": "Ask (amount, structure: equity, loan, asset sale) / Igény (összeg, struktúra: tőke, hitel, eszközeladás)", "options": []}, {"id": "highlights", "type": "list", "required": true, "label": "3-5 investment highlights from the client / 3-5 kiemelt érv az ügyféltől", "options": []}]}], "files": [{"label": "Real estate: rent roll, leases, opex, capex plan, financing terms / Ingatlan: bérlői lista, bérleti szerződések, üzemeltetési költség, capex-terv, finanszírozás", "required": false}, {"label": "Company: 3-5 years financial statements + plan / Cég: 3-5 év beszámoló + terv", "required": false}, {"label": "Startup: traction, unit economics, use of funds / Startup: traction, unit economics, forrásfelhasználás", "required": false}, {"label": "Photos, logo, maps / Fotók, logó, térképek", "required": false}], "endpoint": "https://script.google.com/macros/s/AKfycbzqN5zxPM_CDvaEIHf_nbGNsqkh8DMmrCu5SFFYeBqDbWINVUVA5s6hsTn4q7iQ1ncXKQ/exec"};
+const f = document.getElementById('f');
+const esc = s => String(s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+SPEC.sections.forEach(s => {
+  const sec = document.createElement('section');
+  sec.innerHTML = '<h2>' + esc(s.title) + '</h2>' + (s.note ? '<p class="note">' + esc(s.note) + '</p>' : '');
+  s.questions.forEach(q => {
+    const w = document.createElement('div'); w.dataset.qid = q.id; w.dataset.sec = s.id; w.dataset.type = q.type; w.dataset.req = q.required ? '1' : '';
+    let inp = '';
+    if (q.type === 'choice') inp = '<select name="' + q.id + '"><option value="">-</option>' + q.options.map(o => '<option>' + esc(o) + '</option>').join('') + '</select>';
+    else if (q.type === 'multi') inp = '<div class="opts">' + q.options.map(o => '<label><input type="checkbox" name="' + q.id + '" value="' + esc(o) + '"> ' + esc(o) + '</label>').join('') + '</div>';
+    else if (q.type === 'bool') inp = '<div class="opts"><label><input type="radio" name="' + q.id + '" value="yes"> Yes / Igen</label><label><input type="radio" name="' + q.id + '" value="no"> No / Nem</label></div>';
+    else if (q.type === 'date') inp = '<input type="date" name="' + q.id + '">';
+    else if (q.type === 'number') inp = '<input type="number" step="any" name="' + q.id + '">';
+    else if (q.type === 'list') inp = '<textarea name="' + q.id + '" placeholder="One item per line"></textarea>';
+    else inp = '<textarea name="' + q.id + '" rows="2"></textarea>';
+    w.innerHTML = '<label class="q">' + esc(q.label) + (q.required ? ' <span class="req">*</span>' : '') + '</label>' + inp + '<div class="err">Required / Kötelező</div>';
+    sec.appendChild(w);
+  });
+  f.appendChild(sec);
+});
+if (SPEC.files.length) {
+  const sec = document.createElement('section');
+  sec.innerHTML = '<h2>Files to send separately / Külön küldendő fájlok</h2><p class="note">Please email or upload these files after submitting this form. / Kérjük, a beküldés után e-mailben vagy feltöltéssel küldje el ezeket.</p><ul class="files">' + SPEC.files.map(x => '<li>' + esc(x.label) + (x.required ? ' *' : '') + '</li>').join('') + '</ul>';
+  f.appendChild(sec);
+}
+const btn = document.createElement('button'); btn.type = 'submit'; btn.textContent = 'Submit / Beküldés'; f.appendChild(btn);
+function value(w) {
+  const t = w.dataset.type, id = w.dataset.qid;
+  const els = w.querySelectorAll('[name="' + id + '"]');
+  if (t === 'multi') return [...els].filter(e => e.checked).map(e => e.value);
+  if (t === 'bool') { const c = [...els].find(e => e.checked); return c ? c.value === 'yes' : null; }
+  const v = els[0].value.trim();
+  if (t === 'list') return v ? v.split(/\n+/).map(x => x.trim()).filter(Boolean) : [];
+  if (t === 'number') return v === '' ? null : Number(v);
+  return v === '' ? null : v;
+}
+f.addEventListener('submit', async ev => {
+  ev.preventDefault();
+  let ok = true; const answers = {};
+  f.querySelectorAll('[data-qid]').forEach(w => {
+    const v = value(w), empty = v === null || (Array.isArray(v) && v.length === 0);
+    w.classList.toggle('bad', !!w.dataset.req && empty); if (w.dataset.req && empty) ok = false;
+    (answers[w.dataset.sec] = answers[w.dataset.sec] || {})[w.dataset.qid] = v;
+  });
+  if (!ok) { const bad = f.querySelector('.bad'); if (bad) bad.scrollIntoView({behavior: 'smooth', block: 'center'}); return; }
+  const out = {product: SPEC.product, form_version: 1, submitted: new Date().toISOString(), answers};
+  let sent = false;
+  if (SPEC.endpoint) { try { const r = await fetch(SPEC.endpoint, {method: 'POST', headers: {'Content-Type': 'text/plain;charset=utf-8'}, body: JSON.stringify(out)}); sent = r.ok; } catch (e) { sent = false; } }
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(out, null, 2)], {type: 'application/json'}));
+  a.download = 'intake_' + SPEC.product + '.json'; a.click();
+  f.style.display = 'none'; document.getElementById('done').style.display = 'block';
+  document.getElementById('doneMsg').textContent = sent ? 'Your answers were sent. A copy was also saved as a file. / A válaszok elküldve, egy másolat fájlként is letöltődött.'
+    : 'Your answers were saved as a file (intake_' + SPEC.product + '.json). Please email that file back to us together with the requested documents. / A válaszokat fájlba mentettük: kérjük, küldje vissza e-mailben a kért dokumentumokkal együtt.';
+});
+</script></main></body></html>

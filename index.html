@@ -94,6 +94,8 @@ h1{margin:0 0 8px;font-size:27px;line-height:1.12;letter-spacing:-.025em;font-we
 .drop span{font-weight:600;color:var(--primary)}
 .uplist{list-style:none;padding:0;margin:8px 0}.uplist li{display:flex;justify-content:space-between;gap:12px;padding:10px 12px;border:1px solid var(--rule);border-radius:8px;margin:6px 0;background:#fff;font-size:14px}
 .uplist .n{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.uplist .s{color:var(--muted);flex:none}.uplist .okay{color:var(--accent);font-weight:600}.uplist .err{color:#C9422B}
+/* 44px tap area for the help button without changing its look */
+.help-btn{position:relative}.help-btn::after{content:"";position:absolute;inset:-6px}
 </style></head><body><main>
 <header class="hero"><p class="kick">Levente Frigyes &middot; Financial Analyst</p><h1>What do you need analysed?</h1>
 <p class="lead">Pick a service, send a short request, then talk it through in a 30-minute call.</p>
